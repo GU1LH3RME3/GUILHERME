@@ -1,0 +1,65 @@
+//Carros; LIVRE; animação; aventura
+//Interestelar; 10 anos; drama; fantasia; Sci-Fi;
+//The Chosen; 16 anos; drama;
+//Os 12 Macacos; 14 anos; drama; mistério; Sci-Fi;
+//Gran Turismo; 12 anos; drama; aventura; ação;
+//Jogos Vorazes: Em Chamas; 14 anos; aventura; ação; Sci-Fi;
+//Cobra Kai; 14 anos; ação; comédia; drama;
+//Um Lugar Silencioso; 14 anos; terror; drama; Sci-Fi;
+//Kung Fu Panda 2; LIVRE; animação; comédia; aventura;
+//Bad Boys; 16 anos; ação; comédia; crime;
+
+
+let campoIdade;
+let campoAnimacao;
+let campoAcao;
+
+function setup() {
+  createCanvas(800, 400);
+  createElement("h2", "Recomendador de filmes");
+  createSpan("Sua idade:");
+  campoIdade = createInput("5");
+  campoAnimacao = createCheckbox("Gosta de animação?");
+  campoAcao = createCheckbox("Gosta de ação?");
+}
+
+function draw() {
+  background("white");
+  let idade = campoIdade.value();
+  let gostaDeAnimacao = campoAnimacao.checked();
+  let gostaDeAcao = campoAcao.checked();
+  let recomendacao = geraRecomendacao(idade, gostaDeAnimacao, gostaDeAcao);
+    fill("purple");
+    textAlign(CENTER, CENTER);
+    textSize(35);
+    text(recomendacao, width / 2, height / 2);
+}
+
+function geraRecomendacao(idade, gostaDeAnimacao, gostaDeAcao) {
+  if (idade <= 10) {
+    return "Carros";
+  if (idade >= 14) {
+      return "Os 12 Macacos";
+    } else{
+      if (idade >= 12) {
+        if (gostaDeAnimacao || gostaDeAcao) {
+          return "Gran Turismo";
+        } else{
+         return "Interestelar";
+        }
+      } else {
+        if (gostaDeAnimacao) {
+          return "Carros";
+        } else {
+          return "Kung Fu Panda 2";
+        }
+      }
+    }
+  } else {
+    if (gostaDeAcao) {
+      return "Bad Boys 4";
+    } else {
+      return "Jogos Vorazes";
+    }
+  }
+}
